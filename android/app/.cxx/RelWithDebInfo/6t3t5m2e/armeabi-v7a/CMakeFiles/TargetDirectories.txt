@@ -1,0 +1,2 @@
+/Users/fatemakoli/Documents/GitHub/attendance/android/app/.cxx/RelWithDebInfo/6t3t5m2e/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/fatemakoli/Documents/GitHub/attendance/android/app/.cxx/RelWithDebInfo/6t3t5m2e/armeabi-v7a/CMakeFiles/rebuild_cache.dir

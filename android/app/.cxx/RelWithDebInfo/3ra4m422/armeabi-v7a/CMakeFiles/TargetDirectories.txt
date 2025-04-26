@@ -1,0 +1,2 @@
+C:/Users/fatema.koli/Downloads/attendance/attendance/android/app/.cxx/RelWithDebInfo/3ra4m422/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/fatema.koli/Downloads/attendance/attendance/android/app/.cxx/RelWithDebInfo/3ra4m422/armeabi-v7a/CMakeFiles/rebuild_cache.dir

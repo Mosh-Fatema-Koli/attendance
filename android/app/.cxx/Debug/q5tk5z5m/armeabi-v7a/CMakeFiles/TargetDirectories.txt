@@ -1,0 +1,2 @@
+/Users/fatemakoli/StudioProjects/attendance/android/app/.cxx/Debug/q5tk5z5m/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/fatemakoli/StudioProjects/attendance/android/app/.cxx/Debug/q5tk5z5m/armeabi-v7a/CMakeFiles/rebuild_cache.dir

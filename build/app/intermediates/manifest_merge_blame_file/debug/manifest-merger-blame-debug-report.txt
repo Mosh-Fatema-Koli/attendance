@@ -1,0 +1,279 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.attendance"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="35" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:5:5-66
+15-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:5:22-64
+16
+17    <uses-feature
+17-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:3:5-85
+18        android:name="android.hardware.camera"
+18-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:3:19-57
+19        android:required="false" />
+19-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:3:58-82
+20
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:6:5-78
+21-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:6:22-76
+22    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+22-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:7:5-75
+22-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:7:22-73
+23    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+23-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:8:5-78
+23-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:8:22-76
+24    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+24-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:9:5-80
+24-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:9:22-78
+25    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+25-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:10:5-76
+25-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:10:22-73
+26    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+26-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:11:5-80
+26-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:11:22-77
+27    <uses-permission android:name="android.permission.CAMERA" />
+27-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:12:5-64
+27-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:12:22-62
+28    <!--
+29 Required to query activities that can process text, see:
+30         https://developer.android.com/training/package-visibility and
+31         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+32
+33         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+34    -->
+35    <queries>
+35-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:52:5-57:15
+36        <intent>
+36-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:53:9-56:18
+37            <action android:name="android.intent.action.PROCESS_TEXT" />
+37-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:54:13-72
+37-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:54:21-70
+38
+39            <data android:mimeType="text/plain" />
+39-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:55:13-50
+39-->/Users/fatemakoli/Documents/GitHub/attendance/android/app/src/main/AndroidManifest.xml:55:19-48
+40        </intent>
+41    </queries>
+42
+43    <uses-feature android:name="android.hardware.camera.any" />
+43-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-64
+43-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:7:19-61
+44
+45    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+45-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-71
+45-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-68
+46    <uses-permission
+46-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-13:38
+47        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+47-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-65
+48        android:maxSdkVersion="28" />
+48-->[:camera_android_camerax] /Users/fatemakoli/Documents/GitHub/attendance/build/camera_android_camerax/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-35
+49
+50    <uses-feature android:name="android.hardware.wifi" />
+50-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-58
+50-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:7:19-55
+51
+52    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- TODO remove the below two permission from v1.0.0, user need to add this explicitly -->
+52-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-79
+52-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:12:22-76
+53    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+53-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:16:5-76
+53-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:16:22-73
+54    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+54-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:17:5-73
+54-->[:wifi_iot] /Users/fatemakoli/Documents/GitHub/attendance/build/wifi_iot/intermediates/merged_manifest/debug/AndroidManifest.xml:17:22-70
+55
+56    <permission
+56-->[androidx.core:core:1.13.1] /Users/fatemakoli/.gradle/caches/transforms-3/74c1895ee15d4a639000e095e1132bc7/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+57        android:name="com.example.attendance.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+57-->[androidx.core:core:1.13.1] /Users/fatemakoli/.gradle/caches/transforms-3/74c1895ee15d4a639000e095e1132bc7/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+58        android:protectionLevel="signature" />
+58-->[androidx.core:core:1.13.1] /Users/fatemakoli/.gradle/caches/transforms-3/74c1895ee15d4a639000e095e1132bc7/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+59
+60    <uses-permission android:name="com.example.attendance.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+60-->[androidx.core:core:1.13.1] /Users/fatemakoli/.gradle/caches/transforms-3/74c1895ee15d4a639000e095e1132bc7/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+60-->[androidx.core:core:1.13.1] /Users/fatemakoli/.gradle/caches/transforms-3/74c1895ee15d4a639000e095e1132bc7/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+61
+62    <application
+63        android:name="android.app.Application"
+64        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+64-->[androidx.core:core:1.13.1] /Users/fatemakoli/.gradle/caches/transforms-3/74c1895ee15d4a639000e095e1132bc7/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+65        android:debuggable="true"
+66        android:extractNativeLibs="true"
+67        android:icon="@mipmap/launcher_icon"
+68        android:label="attendance" >
+69        <activity
+70            android:name="com.example.attendance.MainActivity"
+71            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+72            android:exported="true"
+73            android:hardwareAccelerated="true"
+74            android:launchMode="singleTop"
+75            android:taskAffinity=""
+76            android:theme="@style/LaunchTheme"
+77            android:windowSoftInputMode="adjustResize" >
+78
+79            <!--
+80                 Specifies an Android theme to apply to this Activity as soon as
+81                 the Android process has started. This theme is visible to the user
+82                 while the Flutter UI initializes. After that, this theme continues
+83                 to determine the Window background behind the Flutter UI.
+84            -->
+85            <meta-data
+86                android:name="io.flutter.embedding.android.NormalTheme"
+87                android:resource="@style/NormalTheme" />
+88
+89            <intent-filter>
+90                <action android:name="android.intent.action.MAIN" />
+91
+92                <category android:name="android.intent.category.LAUNCHER" />
+93            </intent-filter>
+94        </activity>
+95        <!--
+96             Don't delete the meta-data below.
+97             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+98        -->
+99        <meta-data
+100            android:name="flutterEmbedding"
+101            android:value="2" />
+102
+103        <service
+103-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:24:9-33:19
+104            android:name="androidx.camera.core.impl.MetadataHolderService"
+104-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:25:13-75
+105            android:enabled="false"
+105-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:26:13-36
+106            android:exported="false" >
+106-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:27:13-37
+107            <meta-data
+107-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:30:13-32:89
+108                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+108-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:31:17-103
+109                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+109-->[androidx.camera:camera-camera2:1.4.1] /Users/fatemakoli/.gradle/caches/transforms-3/98fde363990b1d4626d01559396be3ea/transformed/jetified-camera-camera2-1.4.1/AndroidManifest.xml:32:17-86
+110        </service>
+111
+112        <provider
+112-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-17:20
+113            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+113-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-82
+114            android:authorities="com.example.attendance.flutter.image_provider"
+114-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+115            android:exported="false"
+115-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+116            android:grantUriPermissions="true" >
+116-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-47
+117            <meta-data
+117-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-16:75
+118                android:name="android.support.FILE_PROVIDER_PATHS"
+118-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+119                android:resource="@xml/flutter_image_picker_file_paths" />
+119-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-72
+120        </provider> <!-- Trigger Google Play services to install the backported photo picker module. -->
+121        <service
+121-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:19:9-31:19
+122            android:name="com.google.android.gms.metadata.ModuleDependencies"
+122-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-78
+123            android:enabled="false"
+123-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-36
+124            android:exported="false" >
+124-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-37
+125            <intent-filter>
+125-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-26:29
+126                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+126-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:25:17-94
+126-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:25:25-91
+127            </intent-filter>
+128
+129            <meta-data
+129-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-30:36
+130                android:name="photopicker_activity:0:required"
+130-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-63
+131                android:value="" />
+131-->[:image_picker_android] /Users/fatemakoli/Documents/GitHub/attendance/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-33
+132        </service>
+133
+134        <uses-library
+134-->[androidx.window:window:1.2.0] /Users/fatemakoli/.gradle/caches/transforms-3/ace60e8e30df61681292083d41c836d5/transformed/jetified-window-1.2.0/AndroidManifest.xml:23:9-25:40
+135            android:name="androidx.window.extensions"
+135-->[androidx.window:window:1.2.0] /Users/fatemakoli/.gradle/caches/transforms-3/ace60e8e30df61681292083d41c836d5/transformed/jetified-window-1.2.0/AndroidManifest.xml:24:13-54
+136            android:required="false" />
+136-->[androidx.window:window:1.2.0] /Users/fatemakoli/.gradle/caches/transforms-3/ace60e8e30df61681292083d41c836d5/transformed/jetified-window-1.2.0/AndroidManifest.xml:25:13-37
+137        <uses-library
+137-->[androidx.window:window:1.2.0] /Users/fatemakoli/.gradle/caches/transforms-3/ace60e8e30df61681292083d41c836d5/transformed/jetified-window-1.2.0/AndroidManifest.xml:26:9-28:40
+138            android:name="androidx.window.sidecar"
+138-->[androidx.window:window:1.2.0] /Users/fatemakoli/.gradle/caches/transforms-3/ace60e8e30df61681292083d41c836d5/transformed/jetified-window-1.2.0/AndroidManifest.xml:27:13-51
+139            android:required="false" />
+139-->[androidx.window:window:1.2.0] /Users/fatemakoli/.gradle/caches/transforms-3/ace60e8e30df61681292083d41c836d5/transformed/jetified-window-1.2.0/AndroidManifest.xml:28:13-37
+140
+141        <provider
+141-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
+142            android:name="androidx.startup.InitializationProvider"
+142-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:25:13-67
+143            android:authorities="com.example.attendance.androidx-startup"
+143-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:26:13-68
+144            android:exported="false" >
+144-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:27:13-37
+145            <meta-data
+145-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+146                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+146-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+147                android:value="androidx.startup" />
+147-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/fatemakoli/.gradle/caches/transforms-3/06238db6d1b9fadfc90e00cec994ce15/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+148            <meta-data
+148-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+149                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+149-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+150                android:value="androidx.startup" />
+150-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+151        </provider>
+152
+153        <receiver
+153-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+154            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+154-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+155            android:directBootAware="false"
+155-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+156            android:enabled="true"
+156-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+157            android:exported="true"
+157-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+158            android:permission="android.permission.DUMP" >
+158-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+159            <intent-filter>
+159-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+160                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+160-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+160-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+161            </intent-filter>
+162            <intent-filter>
+162-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+163                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+163-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+163-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+164            </intent-filter>
+165            <intent-filter>
+165-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+166                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+166-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+166-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+167            </intent-filter>
+168            <intent-filter>
+168-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+169                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+169-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+169-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/fatemakoli/.gradle/caches/transforms-3/691ea7010aebab9266cc2c85ade0f719/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+170            </intent-filter>
+171        </receiver>
+172    </application>
+173
+174</manifest>

@@ -1,0 +1,2 @@
+/Users/fatemakoli/StudioProjects/attendance/android/app/.cxx/RelWithDebInfo/1x326g13/x86/CMakeFiles/edit_cache.dir
+/Users/fatemakoli/StudioProjects/attendance/android/app/.cxx/RelWithDebInfo/1x326g13/x86/CMakeFiles/rebuild_cache.dir
