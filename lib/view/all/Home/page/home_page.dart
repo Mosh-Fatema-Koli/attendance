@@ -12,11 +12,13 @@ import '../../../widgets/framework/RF_AppBar.dart';
 import '../../../widgets/framework/rf_button.dart';
 import '../../../widgets/framework/rf_text.dart';
 import '../../Attendance/page/attendence_summary.dart';
+import '../../Login/cubit/logout.dart';
+import '../../Login/login_page.dart';
 import '../cubit/dashbord/dashboard_cubit.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
-
+   Homepage({super.key});
+  final logoutController = Logout();
   @override
   Widget build(BuildContext context) {
     final miscController = MiscController();
@@ -34,7 +36,9 @@ class Homepage extends StatelessWidget {
         ],
         child: BlocConsumer<DashboardCubit, DashboardState>(
           listener: (context, state) {
-            // TODO: implement listener
+         // state.success==false?  logoutController.finalLogOut(context: context, onOut: (){
+         //   miscController.navigateTo(context:context,page:  LoginPage());
+         // }):null;
           },
           builder: (context, state) {
             return Stack(

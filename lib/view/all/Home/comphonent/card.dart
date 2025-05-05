@@ -49,7 +49,7 @@ class CardList extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child:  Icon(attendanceHistory.status=="Present"?Icons.check_box:Icons.close,size: 30,color: attendanceHistory.status=="Present"?AppColors.green:Colors.red,),
+                          child:  Icon(attendanceHistory.status=="Present"?Icons.check_box:Icons.close,size: 30,color: attendanceHistory.status=="Present"?AppColors.primaryColor:Colors.red,),
                         ),
                         SizedBox(width: 10.w,),
                         Expanded(
@@ -132,11 +132,11 @@ class CardList extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  right: 0,
+                  right: -5,
                   top: -5,
                   child: IconButton(onPressed: () {
                     buildShowCustomWidgetDialog(context);
-                  }, icon: Icon(Icons.double_arrow,color: AppColors.primaryColor.withOpacity(.5),size: 20,)))
+                  }, icon: Icon(Icons.double_arrow,color: AppColors.primaryColor,size: 20,)))
 
             ],
           )

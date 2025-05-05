@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import '../../../../../api_service/ApiController.dart';
 import '../../../../../api_service/app_cash.dart';
@@ -93,7 +94,7 @@ class CheckInCubit extends Cubit<CheckInState> {
       context: context,
       cancelable: false,
       title: "Do you want to send?",
-      subTitle: "MAC Address: $macAddress ,\nattendance_type: ${attendance_type == 0 ? "Entry" : "Exit"}",
+      subTitle: "MAC Address: ${macAddress??"a8-6e-84-ca-d7-8c"} ,\nattendance_type: ${attendance_type == 0 ? "Entry" : "Exit"}",
       okText: "Send",
       okPressed: () async {
         _miscController.navigateBack(context: context);
@@ -122,7 +123,8 @@ class CheckInCubit extends Cubit<CheckInState> {
               FormData formData = FormData.fromMap({
                 "image": multipartFile,
                 "attendance_type": attendance_type == 0 ? "entry" : "exit",
-                "mac_address": macAddress,
+               // "mac_address": macAddress,
+                "mac_address": "a8-6e-84-ca-d7-8c",
               });
 
               // ✅ Send API Request
@@ -168,12 +170,16 @@ class CheckInCubit extends Cubit<CheckInState> {
 
 // ✅ Get MAC Address (BSSID)
   Future<String?> getMacAddress() async {
-    try {
-      final info = NetworkInfo();
-      return await info.getWifiBSSID(); // Router MAC, not device MAC
-    } catch (e) {
-      print("MAC Address Error: $e");
-      return null;
+    const MethodChannel _channel = MethodChannel('network_info');
+
+    Future<String?> getRouterMacAddress() async {
+      try {
+        final String? macAddress = await _channel.invokeMethod('getRouterMacAddress');
+        return macAddress;
+      } on PlatformException catch (e) {
+        print("Failed to get MAC: ${e.message}");
+        return null;
+      }
     }
   }
 

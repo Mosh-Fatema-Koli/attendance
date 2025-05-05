@@ -1,4 +1,6 @@
+import 'package:attendance/api_service/Constant.dart';
 import 'package:attendance/api_service/app_cash.dart';
+import 'package:attendance/view/all/nab_bar.dart';
 import 'package:attendance/view/widgets/framework/rf_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,25 +27,39 @@ class RFAppBar extends StatelessWidget {
       backgroundColor: AppColors.primaryColor,
       automaticallyImplyLeading: false,
       title:ListTile(
-        contentPadding: EdgeInsets.only(top: 15),
-        leading: CircleAvatar(radius: 20.r,
-          backgroundColor: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(2.0).w,
-            child:   AppCache().userInfo!.image !=null? CachedNetworkImage(
-              imageUrl: AppCache().userInfo!.image.toString(),
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                      colorFilter:
-                      ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+      contentPadding: EdgeInsets.only(top: 15),
+        leading: AppCache().userInfo!.image != null
+            ? GestureDetector(
+          onTap: () {
+            _miscController.navigateTo(
+                context: context, page: NavbarPage(initialIndex: 1));
+          },
+          child: Container(
+            height: 40.h,
+            width: 40.h,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 2),
+            ),
+            child: ClipOval( // Use ClipOval for a perfect circle
+              child: CachedNetworkImage(
+                imageUrl: "${Constant.imageUrl}${AppCache().userInfo!.image}",
+                fit: BoxFit.cover, // Cover to fill the circular space
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(),
                 ),
+                errorWidget: (context, url, error) =>
+                    Image.asset("assets/images/man.png", fit: BoxFit.cover),
               ),
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Image.asset("assets/images/man.png",fit: BoxFit.contain,),
-            ):Image.asset("assets/images/man.png",fit: BoxFit.contain,),
+            ),
+          ),
+        )
+            : ClipOval(
+          child: Image.asset(
+            "assets/images/man.png",
+            fit: BoxFit.cover,
+            height: 70.h,
+            width: 70.h,
           ),
         ),
         title: RFText(text: "Welcome, ${AppCache().userInfo!.name}",size: 14.sp,weight: FontWeight.bold,color: AppColors.save_white,),

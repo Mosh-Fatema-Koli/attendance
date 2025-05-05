@@ -9,10 +9,10 @@ abstract class AttendanceFilterState {
   final List summaryList=[
     MenuModel(name: "Total Present",image: ""),
     MenuModel(name: "Total Absent",image: ""),
-    MenuModel(name: "TL_Hours",image: ""),
+    MenuModel(name: "Total Hours",image: ""),
     MenuModel(name: "Total late",image: ""),
     MenuModel(name: "Total early",image: ""),
-    MenuModel(name: "TE_Hours",image: ""),
+    MenuModel(name: "Less/More hr",image: ""),
   ];
 
   @override

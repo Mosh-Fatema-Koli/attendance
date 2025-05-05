@@ -15,13 +15,20 @@ Widget serviceSummaryList(BuildContext context) {
         final calculation = state.summary;
         final summaryList = state.summaryList;
 
+        String formatHoursToHoursMinutes(double? decimalHours) {
+          if (decimalHours == null) return "--";
+          final hours = decimalHours.floor();
+          final minutes = ((decimalHours - hours) * 60).round();
+          return "$hours hr ${minutes} min";
+        }
+
         final List<String> values = [
           "${calculation.totalPresent ?? 0} days",
           "${calculation.totalAbsent ?? 0} days",
-          "${calculation.totalLateHours ?? 0} hours",
+          formatHoursToHoursMinutes(calculation.totalHours),
           "${calculation.totalLate ?? 0} days",
           "${calculation.totalEarly ?? 0} days",
-          "${calculation.totalEarlyHours ?? 0} hours",
+          formatHoursToHoursMinutes(calculation.totalLessMoreHours),
         ];
 
         return GridView.builder(

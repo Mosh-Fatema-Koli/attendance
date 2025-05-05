@@ -13,7 +13,7 @@
 
 
     <application
-        android:label="attendance"
+        android:label="Staffsynk"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

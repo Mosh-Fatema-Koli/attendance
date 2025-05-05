@@ -345,34 +345,34 @@ return json.encode(fetchResponse);
 
 
   /// **Error Handling**
-  Map<String, dynamic> _handleErrorResponse(Response? response) {
-    String message = "Something went wrong";
-    if (response != null) {
-      switch (response.statusCode) {
-        case 400:
-          message = 'Bad Request';
-          break;
-        case 401:
-          message = 'Unauthorized';
-          break;
-        case 403:
-          message = 'Forbidden';
-          break;
-        case 404:
-          message = 'Not Found';
-          break;
-        case 500:
-          message = 'Internal Server Error';
-          break;
-        case 504:
-          message = 'Gateway Timeout';
-          break;
-        default:
-          message = 'Unknown Error: ${response.statusCode}';
-      }
-    }
-    return {"Success": false, "Message": message, "Packet": {}};
-  }
+  // Map<String, dynamic> _handleErrorResponse(Response? response) {
+  //   String message = "Something went wrong";
+  //   if (response != null) {
+  //     switch (response.statusCode) {
+  //       case 400:
+  //         message = 'Bad Request';
+  //         break;
+  //       case 401:
+  //         message = 'Unauthorized';
+  //         break;
+  //       case 403:
+  //         message = 'Forbidden';
+  //         break;
+  //       case 404:
+  //         message = 'Not Found';
+  //         break;
+  //       case 500:
+  //         message = 'Internal Server Error';
+  //         break;
+  //       case 504:
+  //         message = 'Gateway Timeout';
+  //         break;
+  //       default:
+  //         message = 'Unknown Error: ${response.statusCode}';
+  //     }
+  //   }
+  //   return {"Success": false, "Message": message, "Packet": {}};
+  // }
 
   /// **Helper Method for HTTP Error Messages**
   String _getHttpErrorMessage(int? statusCode) {

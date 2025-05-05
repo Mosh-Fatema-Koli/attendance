@@ -7,6 +7,7 @@ import '../../../api_service/colors.dart';
 import '../../../common_controller/MiscController.dart';
 import '../../widgets/framework/rf_button.dart';
 import '../../widgets/framework/rf_text.dart';
+import '../forget_pass/enter_email.dart';
 import 'cubit/login_cubit.dart';
 import 'cubit/login_state.dart';
 
@@ -43,7 +44,7 @@ class LoginPage extends StatelessWidget {
           builder: (context, state) {
             var cubit = LoginCubit.get(context);
             cubit.emailController.text="EID-381653";
-            cubit.passwordController.text="1234";
+            cubit.passwordController.text="1234567";
             return MultiBlocProvider(
                 providers: [
                   BlocProvider(create: (BuildContext context) => LoginCubit())
@@ -150,11 +151,16 @@ class LoginPage extends StatelessWidget {
                                     Positioned(
                                       right: 20.h,
                                       top: 17.w,
-                                      child: RFText(
-                                        text: "Forgot",
-                                        textAlign: TextAlign.end,
-                                        size: 14.sp,
-                                        color: AppColors.primaryColor,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          _miscController.navigateTo(context: context, page: EnterEmailPage());
+                                        },
+                                        child: RFText(
+                                          text: "Forgot",
+                                          textAlign: TextAlign.end,
+                                          size: 14.sp,
+                                          color: AppColors.primaryColor,
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../api_service/Constant.dart';
 import '../../../api_service/app_cash.dart';
 import '../../../api_service/colors.dart';
 import '../../../common_controller/MiscController.dart';
@@ -80,25 +81,24 @@ class UpdateProfile extends StatelessWidget {
                   cubit.selectImage();
                 },
                 child: Container(
-                  padding: EdgeInsets.all(5).w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primaryColor,
-                  ),
-                  child: CircleAvatar(
-                    radius: 50.r,
-                    backgroundColor: AppColors.save_white,
+                    height: 120.h,
+                    width: 120.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primaryColor,
+                       border: Border.all(width: 5,color: AppColors.primaryColor)
+                    ),
+                  child: ClipOval(
+
                     child: state.cameraPath.isNotEmpty
-                        ? ClipOval(
-                      child: Image.file(
-                        File(state.cameraPath),
-                        fit: BoxFit.cover,
-                        width: 100.w,
-                        height: 100.h,
-                      ),
-                    )
+                        ? Image.file(
+                          File(state.cameraPath),
+                          fit: BoxFit.cover,
+                          width: 100.w,
+                          height: 100.h,
+                        )
                         : AppCache().userInfo!.image !=null? CachedNetworkImage(
-                      imageUrl: AppCache().userInfo!.image.toString(),
+                      imageUrl: "${Constant.imageUrl}${AppCache().userInfo!.image}",
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -140,8 +140,8 @@ class UpdateProfile extends StatelessWidget {
               SizedBox(height: 20.h),
               _buildField("Name","Enter your name", nameController,),
               _buildField("Phone","Enter your phone", phoneController),
-              _buildField("Date of birth","Enter your joining date", birthController, readOnly: true),
-              _buildField("Email","Enter your email", emailController),
+              _buildDateField("Date of birth","Enter your joining date", birthController, context),
+              _buildField("Email","Enter your email", emailController,readOnly: true),
             ],
           ),
         ),
@@ -220,4 +220,48 @@ class UpdateProfile extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildDateField(String name, String hint, TextEditingController controller,BuildContext context, {bool readOnly = true}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5).w,
+      child: Container(
+        decoration: RFBoxDecoration(
+          border: Border.all(color: Colors.black, style: BorderStyle.solid, width: 2),
+        ).build(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10).w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RFText(text: name, color: Colors.grey),
+              GestureDetector(
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context:context, // or use `context` directly if you're within a build method
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime.now(),
+                  );
+                  if (pickedDate != null) {
+                    controller.text = "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+                  }
+                },
+                child: AbsorbPointer(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: hint,
+                      border: InputBorder.none,
+                    ),
+                    controller: controller,
+                    readOnly: readOnly,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 }

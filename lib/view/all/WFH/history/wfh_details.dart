@@ -1,3 +1,4 @@
+import 'package:attendance/api_service/Constant.dart';
 import 'package:attendance/view/all/Leave/history/model/leave_model.dart';
 import 'package:attendance/view/all/WFH/history/cubit/wfh_history_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -90,17 +91,21 @@ class WFHDetailsPage extends StatelessWidget {
                         //   ),),
                         //   title: RFText(text: AppCache().userInfo?.name),),
                         wfhDetails.image !=null? CachedNetworkImage(
-                          imageUrl: wfhDetails.image.toString().trim(),
+                          imageUrl: "${Constant.imageUrl}${wfhDetails.image}",
                           imageBuilder: (context, imageProvider) => Container(
+                            height: 200.h,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: imageProvider,
                                   fit: BoxFit.cover,
-                                  colorFilter:
-                                  ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                              ),
                             ),
                           ),
-                          placeholder: (context, url) => CircularProgressIndicator(),
+                          placeholder: (context, url) => SizedBox(child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator())),
                           errorWidget: (context, url, error) => Icon(Icons.error),
                         ):SizedBox(),
                         Divider(),

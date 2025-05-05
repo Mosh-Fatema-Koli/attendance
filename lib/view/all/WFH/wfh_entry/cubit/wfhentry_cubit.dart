@@ -81,7 +81,7 @@ class WfhentryCubit extends Cubit<WfhentryState> {
                 "start_date": formattedStartDate,
                 "end_date": formattedEndDate,
                 "reason": reason,
-                "image": multipartFile,  // Attach the image if it's valid
+                "image": imagePath.isNotEmpty?multipartFile:"",   // Attach the image if it's valid
               });
 
               // Send API Request

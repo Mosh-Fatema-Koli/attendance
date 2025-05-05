@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../api_service/Constant.dart';
 import '../../../../api_service/colors.dart';
 import '../../../../common_controller/MiscController.dart';
 import '../../../widgets/framework/C_button.dart';
@@ -96,17 +97,20 @@ class LeaveDetailsPage extends StatelessWidget {
                         //   ),),
                         //   title: RFText(text: AppCache().userInfo?.name),),
                         leaveDetails.image !=null? CachedNetworkImage(
-                          imageUrl: leaveDetails.image.toString().trim(),
+                          imageUrl: "${Constant.imageUrl}${leaveDetails.image}",
                           imageBuilder: (context, imageProvider) => Container(
+                            height: 200.h,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: imageProvider,
-                                  fit: BoxFit.cover,
-                                  colorFilter:
-                                  ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                                  fit: BoxFit.cover,),
                             ),
                           ),
-                          placeholder: (context, url) => CircularProgressIndicator(),
+                          placeholder: (context, url) => SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator()),
                           errorWidget: (context, url, error) => Icon(Icons.error),
                         ):SizedBox(),
                         Divider(),

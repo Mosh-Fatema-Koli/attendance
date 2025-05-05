@@ -86,7 +86,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
                   "name": name,
                   "phone": phone,
                   "date_of_birth": formatteddoB,
-                   "image": multipartFile,  // Attach the image if it's valid
+                   "image": imagePath.isNotEmpty?multipartFile:"",  // Attach the image if it's valid
               });
 
               // Send API Request

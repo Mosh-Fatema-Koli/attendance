@@ -3,6 +3,7 @@ import 'package:attendance/view/all/update_profile/update_profile.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../api_service/Constant.dart';
 import '../../../common_controller/MiscController.dart';
 import '../../../api_service/colors.dart';
 import '../../widgets/framework/rf_button.dart';
@@ -45,30 +46,24 @@ class ProfilePage extends StatelessWidget {
               children: [
 
                 Container(
-
-                  child: CircleAvatar(
-                    radius: 70.r,
-                    backgroundColor: AppColors.save_white,
-                    child: AppCache().userInfo!.image !=null? CachedNetworkImage(
-                      imageUrl: AppCache().userInfo!.image.toString(),
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                              colorFilter:
-                              ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
-                        ),
-                      ),
-                      placeholder: (context, url) => CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Image.asset("assets/images/man.png",height:MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width,fit: BoxFit.contain,),
-                    ):Image.asset("assets/images/man.png",height:MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width,fit: BoxFit.contain,),
-                  ),
+                  height: 120.h,
+                  width: 120.h,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
                   ),
                   padding: EdgeInsets.all(5).w,
+                  child: ClipOval( // Use ClipOval for a perfect circle
+                    child: CachedNetworkImage(
+                      imageUrl: "${Constant.imageUrl}${AppCache().userInfo!.image}",
+                      fit: BoxFit.cover, // Cover to fill the circular space
+                      placeholder: (context, url) => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          Image.asset("assets/images/man.png", fit: BoxFit.cover),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 10.h,
@@ -137,7 +132,7 @@ class ProfilePage extends StatelessWidget {
                                           miscController.navigateBack( context: context);
                                           miscController.navigateTo(context: context,page: WFHPage());
 
-                                        },buttonColor: Colors.cyan),
+                                        },buttonColor: Colors.white,borderColor: AppColors.primaryColor,textColor: AppColors.primaryColor,),
                                       ],
                                     ),
                                     Positioned(
