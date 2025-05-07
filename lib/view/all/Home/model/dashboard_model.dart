@@ -12,7 +12,7 @@ class DashboardModel {
   User? user;
   dynamic checkIn;
   dynamic checkOut;
-  int? totalWorkingHours;
+  dynamic totalWorkingHours;
   String? checkInstatus;
   String? checkOutstatus;
   bool? entryExistingRecord;

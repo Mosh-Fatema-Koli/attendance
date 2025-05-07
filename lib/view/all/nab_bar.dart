@@ -3,6 +3,9 @@ import 'package:attendance/view/all/Profile/profile_page.dart';
 import 'package:attendance/view/widgets/framework/rf_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../api_service/Constant.dart';
 import '../../common_controller/MiscController.dart';
 import '../../api_service/colors.dart';
 import 'Home/page/home_page.dart';
@@ -111,8 +114,10 @@ class _NavbarPageState extends State<NavbarPage> {
         // setState(() => isLoading = true);
         // await Future.delayed(Duration(seconds: 2)); // Simulate loading
         // setState(() => isLoading = false);
-
-        _miscController.navigateTo(context: context, page: CheckIn(checkIn: true));
+        SharedPreferences pref = await _miscController.pref();
+        String? checkin= _miscController.prefGetString(pref: pref, key: Constant.checkIn)??"";
+        String? checkOut= _miscController.prefGetString(pref: pref, key: Constant.checkOut)??"";
+         checkin=="null"?_miscController.navigateTo(context: context, page: CheckIn(checkIn: true)):checkOut=="null"?_miscController.navigateTo(context: context, page: CheckIn(checkIn: false)):_miscController.toast(msg: "already Submitted",position: ToastGravity.BOTTOM);
       },
      // backgroundColor: AppColors.primaryColor,
       elevation: 10.0,

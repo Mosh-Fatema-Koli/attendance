@@ -18,7 +18,6 @@ import '../cubit/dashbord/dashboard_cubit.dart';
 
 class Homepage extends StatelessWidget {
    Homepage({super.key});
-  final logoutController = Logout();
   @override
   Widget build(BuildContext context) {
     final miscController = MiscController();
@@ -164,10 +163,10 @@ class Homepage extends StatelessWidget {
                                                               .spaceAround,
                                                       children: [
                                                         RFText(
-                                                            text: state
-                                                                    .dashboard
-                                                                    .checkIn ??
-                                                                "--:-- AM"),
+                                                          text: state.dashboard.checkIn != null
+                                                              ? state.dashboard.checkIn?.toString().substring(0, 5)
+                                                              : "--:-- AM",
+                                                        ),
                                                         Container(
                                                           height: 10,
                                                           width: 2,
@@ -274,10 +273,10 @@ class Homepage extends StatelessWidget {
                                                               .spaceAround,
                                                       children: [
                                                         RFText(
-                                                            text: state
-                                                                    .dashboard
-                                                                    .checkOut ??
-                                                                "--:-- PM"),
+                                                          text: state.dashboard.checkOut != null
+                                                              ? state.dashboard.checkOut?.toString().substring(0, 5)
+                                                              : "--:-- PM",
+                                                        ),
                                                         Container(
                                                           height: 10,
                                                           width: 2,

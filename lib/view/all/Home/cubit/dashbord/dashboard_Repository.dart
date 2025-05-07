@@ -3,8 +3,10 @@
 import 'dart:convert';
 import 'package:attendance/view/all/Login/login_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../api_service/ApiController.dart';
+import '../../../../../api_service/Constant.dart';
 import '../../../../../api_service/app_cash.dart';
 import '../../../../../common_controller/MiscController.dart';
 import '../../../Login/cubit/logout.dart';
@@ -14,7 +16,6 @@ import '../../model/dashboard_model.dart';
 class DashboardRepository {
 
   API api = API();
-  final logoutController = Logout();
   final _miscController = MiscController();
 
   //region fetchData
@@ -30,7 +31,11 @@ class DashboardRepository {
           try {
             var list = jsonDecode(apiResponse)['PacketList'];
             var dashboardData = DashboardModel.fromJson(list);
-              onComplete(true, 'Data downloaded successfully',  dashboardData);
+            SharedPreferences preference = await _miscController.pref();
+            _miscController.prefSetString(pref: preference, key: Constant.checkIn, value: dashboardData.checkIn.toString()??"");
+            _miscController.prefSetString(pref: preference, key: Constant.checkOut, value: dashboardData.checkOut.toString());
+
+            onComplete(true, 'Data downloaded successfully',  dashboardData);
 
           } catch (ex) {
 

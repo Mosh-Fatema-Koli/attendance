@@ -12,7 +12,8 @@ import 'cubit/forge_pass_cubit.dart';
 import 'enter_newpass.dart';
 
 class OtpPage extends StatelessWidget {
-   OtpPage({super.key});
+  String email;
+   OtpPage({super.key,required this.email});
 
   TextEditingController pinController = TextEditingController();
 

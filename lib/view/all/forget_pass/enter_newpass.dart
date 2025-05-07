@@ -45,7 +45,7 @@ class EnterNewpass extends StatelessWidget {
               listener: (context, state) {
                 if (state is ForgePassInitial) {
                   if(state.success){
-                    _miscController.navigateTo(context: context, page: OtpPage());
+                    _miscController.navigateTo(context: context, page: LoginPage());
                   } else {
                     if(state.message.isNotEmpty){
                       dialog(context: context, success: state.success, message: state.message);

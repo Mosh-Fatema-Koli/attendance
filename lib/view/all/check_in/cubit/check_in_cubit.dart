@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../../../../api_service/ApiController.dart';
 import '../../../../../api_service/app_cash.dart';
 import '../../../../../common_controller/MiscController.dart';
@@ -22,22 +23,52 @@ class CheckInCubit extends Cubit<CheckInState> {
   int _selectedCameraIndex = 0;
   FlashMode flashMode = FlashMode.off; // Track flash state
 
+  // Future<void> openCamera([bool useFrontCamera = false]) async {
+  //   try {
+  //     cameras = await availableCameras();
+  //     _selectedCameraIndex = useFrontCamera
+  //         ? cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.front)
+  //         : cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.back);
+  //
+  //     if (_selectedCameraIndex == -1 || cameras.isEmpty) {
+  //       emit(CheckInError("No camera found! Available cameras: $cameras"));
+  //       return;
+  //     }
+  //
+  //     controller = CameraController(
+  //       cameras[_selectedCameraIndex],
+  //       ResolutionPreset.high,
+  //       enableAudio: false, // Disable audio for performance
+  //     );
+  //
+  //     await controller.initialize();
+  //     emit(CheckInCameraOpened(controller, useFrontCamera));
+  //   } catch (e) {
+  //     emit(CheckInError("Camera initialization failed: $e"));
+  //   }
+  // }
   Future<void> openCamera([bool useFrontCamera = false]) async {
     try {
       cameras = await availableCameras();
+
+      if (cameras.isEmpty) {
+        emit(CheckInError("No cameras found. Make sure you're using a real device and camera permission is granted."));
+        return;
+      }
+
       _selectedCameraIndex = useFrontCamera
           ? cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.front)
           : cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.back);
 
       if (_selectedCameraIndex == -1) {
-        emit(CheckInError("No camera found!"));
+        emit(CheckInError("No suitable camera found (front: $useFrontCamera)"));
         return;
       }
 
       controller = CameraController(
         cameras[_selectedCameraIndex],
         ResolutionPreset.high,
-        enableAudio: false, // Disable audio for performance
+        enableAudio: false,
       );
 
       await controller.initialize();
@@ -124,7 +155,7 @@ class CheckInCubit extends Cubit<CheckInState> {
                 "image": multipartFile,
                 "attendance_type": attendance_type == 0 ? "entry" : "exit",
                // "mac_address": macAddress,
-                "mac_address": "a8-6e-84-ca-d7-8c",
+                "mac_address": macAddress??"a8-6e-84-ca-d7-8c",
               });
 
               // ✅ Send API Request
@@ -143,10 +174,10 @@ class CheckInCubit extends Cubit<CheckInState> {
               if (success) {
                 print("API Response: $response");
 
-                onComplete(true, '$message');
-                emit(CheckInLoaded(success: true, message: message));
+                onComplete(true, 'Submitted successfully');
+                emit(CheckInLoaded(success: true, message: "Submitted successfully"));
               } else {
-                onComplete(false, 'Upload Failed: $message');
+                onComplete(false, "Not submitted ,something went wrong");
                 emit(CheckInLoaded(success: false, message: "Something went wrong"));
               }
             } catch (e) {
@@ -170,17 +201,40 @@ class CheckInCubit extends Cubit<CheckInState> {
 
 // ✅ Get MAC Address (BSSID)
   Future<String?> getMacAddress() async {
-    const MethodChannel _channel = MethodChannel('network_info');
+    // const MethodChannel _channel = MethodChannel('network_info');
+    //
+    // Future<String?> getRouterMacAddress() async {
+    //   try {
+    //     final String? macAddress = await _channel.invokeMethod('getRouterMacAddress');
+    //     return macAddress;
+    //   } on PlatformException catch (e) {
+    //     print("Failed to get MAC: ${e.message}");
+    //     return null;
+    //   }
+    // }
+    //
+      final info = NetworkInfo();
+      String? macAddress;
 
-    Future<String?> getRouterMacAddress() async {
-      try {
-        final String? macAddress = await _channel.invokeMethod('getRouterMacAddress');
-        return macAddress;
-      } on PlatformException catch (e) {
-        print("Failed to get MAC: ${e.message}");
+      // Ask for location permission
+      var status = await Permission.location.request();
+
+      if (status.isGranted) {
+        try {
+          macAddress = await info.getWifiBSSID();
+          print('✅ MAC/BSSID Address Retrieved: $macAddress');
+          return macAddress;
+        } catch (e) {
+          macAddress = 'Error getting MAC/BSSID.';
+          print('❌ Failed to get MAC address: $e');
+          return null;
+        }
+      } else {
+        macAddress = 'Permission denied.';
+        print('❌ Location permission not granted');
         return null;
       }
-    }
+
   }
 
 

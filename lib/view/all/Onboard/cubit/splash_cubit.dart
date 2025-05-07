@@ -23,7 +23,10 @@ class SplashCubit extends Cubit<SplashState> {
 
   loginApiCall() async {
     SharedPreferences pref = await _miscController.pref();
-    UserInfo userInfo = _miscController.prefGetString(pref: pref, key: Constant.userInfoPref) != null ? UserInfo.fromJson(jsonDecode(_miscController.prefGetString(pref: pref, key: Constant.userInfoPref)!)) : UserInfo();
+    final userInfoString = _miscController.prefGetString(pref: pref, key: Constant.userInfoPref);
+    UserInfo userInfo = (userInfoString != null && userInfoString.isNotEmpty)
+        ? UserInfo.fromJson(jsonDecode(userInfoString))
+        : UserInfo();
     userInfo = AppCache(userInfo: userInfo).userInfo!;
     String? username = userInfo.username;
     await _miscController.delayed(millisecond: 3000);

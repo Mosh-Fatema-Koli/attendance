@@ -42,7 +42,7 @@ class EnterEmailPage extends StatelessWidget {
             listener: (context, state) {
               if (state is ForgePassInitial) {
                 if(state.success){
-                  _miscController.navigateTo(context: context, page: OtpPage());
+                  _miscController.navigateTo(context: context, page: OtpPage(email: email.text,));
                 } else {
                   if(state.message.isNotEmpty){
                     dialog(context: context, success: state.success, message: state.message);
@@ -107,7 +107,12 @@ class EnterEmailPage extends StatelessWidget {
                             onTap: () {
 
                               if (email.text.isNotEmpty) {
-                                _miscController.navigateTo(context: context,page: OtpPage());
+                                context.read<ForgePassCubit>().sentEmail(context: context, email: email.text,
+                                    onComplete: (isSuccess, message) {
+                                      isSuccess==true?_miscController.navigateTo(context: context, page: OtpPage(email: email.text,)):_miscController.toast(msg: message);
+
+                                    },);
+                                _miscController.navigateTo(context: context,page: OtpPage(email: email.text,));
                               } else {
                                 _miscController.toast(msg: 'Please enter your email');
                               }

@@ -11,6 +11,8 @@ class Constant {
   static const String workingSummary = 'http://attendance.mrshakil.com/api/employee-working-summary/';
   static const String userInfoPref = 'UserInfo';
   static const String userInfo = 'UserInfo';
+  static const String checkIn = 'checkIn';
+  static const String checkOut = 'checkOut';
 
 
 }

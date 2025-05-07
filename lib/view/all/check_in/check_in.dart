@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:attendance/api_service/colors.dart';
+import 'package:attendance/view/all/Home/cubit/dashbord/dashboard_cubit.dart';
 import 'package:attendance/view/all/nab_bar.dart';
 import 'package:attendance/view/widgets/framework/rf_text.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../common_controller/MiscController.dart';
 import '../../widgets/framework/rf_button.dart';
 import 'cubit/check_in_cubit.dart';
@@ -40,9 +42,15 @@ class _CheckInState extends State<CheckIn> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _cubit,
-      child: BlocBuilder<CheckInCubit, CheckInState>(
+    return MultiBlocProvider(
+  providers: [
+    BlocProvider(
+      create: (context) => CheckInCubit(),
+    ),  BlocProvider(
+      create: (context) => DashboardCubit(),
+    ),
+  ],
+  child: BlocBuilder<CheckInCubit, CheckInState>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -86,7 +94,7 @@ class _CheckInState extends State<CheckIn> {
           );
         },
       ),
-    );
+);
   }
 
   /// ✅ Camera Control Buttons (Toggle Camera, Capture Image, Flash)
@@ -148,9 +156,11 @@ class _CheckInState extends State<CheckIn> {
                     attendance_type: widget.checkIn ? 0 : 1,
                     image: imagePath,
                     onComplete: (isSuccess, message) {
-                      _miscController.navigateTo(context: context, page: NavbarPage(initialIndex: 1));
-                      _miscController.toast(msg: message);
-                    },
+                      context.read<DashboardCubit>().loadData();
+                      _miscController.navigateTo(context: context, page: NavbarPage(initialIndex: 0));
+                      _miscController.toast(msg: message,position: ToastGravity.BOTTOM);
+
+                      },
                   );
                 },
               ),
