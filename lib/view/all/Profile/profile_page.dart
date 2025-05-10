@@ -77,10 +77,12 @@ class ProfilePage extends StatelessWidget {
                     text: AppCache().userInfo?.email ??
                         "Not Found"),
                 RFText(
+                    text: "User Name: ${AppCache().userInfo?.username ?? "Not Found"}"),
+                RFText(
                     text: AppCache().userInfo?.phone ??
                         "Not Found"),
                 SizedBox(
-                  height: 30.h,
+                  height: 20.h,
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5).w,
                   child:  Card(
