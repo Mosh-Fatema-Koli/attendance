@@ -136,11 +136,13 @@ class UpdateProfile extends StatelessWidget {
               RFText(
                   text: AppCache().userInfo?.email ??
                       "Not Found"),
+              RFText(
+                  text: "User Name: ${AppCache().userInfo?.username ?? "Not Found"}"),
 
               SizedBox(height: 20.h),
               _buildField("Name","Enter your name", nameController,),
               _buildField("Phone","Enter your phone", phoneController),
-              _buildDateField("Date of birth","Enter your joining date", birthController, context),
+              _buildDateField("Date of birth","Enter your date of birth", birthController, context),
               _buildField("Email","Enter your email", emailController,readOnly: true),
             ],
           ),
@@ -154,7 +156,6 @@ class UpdateProfile extends StatelessWidget {
                   buttonText: "Update",
                   onTap: () {
                     if(nameController.text.isNotEmpty ||phoneController.text.isNotEmpty ||birthController.text.isNotEmpty ||emailController.text.isNotEmpty){
-                      if(state.cameraPath.isNotEmpty){
                               cubit.updateProfile(
                                 name: nameController.text,
                                 phone: phoneController.text,
@@ -164,13 +165,6 @@ class UpdateProfile extends StatelessWidget {
                                   miscController.navigateTo(context: context, page: NavbarPage(initialIndex: 1));
                                   miscController.toast(msg: message);
                               }, context: context,);
-
-                      }else{
-                        miscController.toast(
-                          msg: "Please add your image",
-                          position: ToastGravity.TOP,
-                        );
-                      }
                     }else{
                       miscController.toast(
                         msg: "Please add your all information",
@@ -181,7 +175,6 @@ class UpdateProfile extends StatelessWidget {
                     debugPrint("Name: ${nameController.text}");
                     debugPrint("Phone: ${phoneController.text}");
                     debugPrint("Email: ${emailController.text}");
-                    debugPrint("Joining Date: ${birthController.text}");
                   },
                 ),
               ),

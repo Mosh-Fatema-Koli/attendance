@@ -20,6 +20,14 @@ class Homepage extends StatelessWidget {
    Homepage({super.key});
   @override
   Widget build(BuildContext context) {
+    String formatTimeTo12Hour(String time24) {
+      try {
+        final time = DateFormat("HH:mm:ss").parse(time24); // or "HH:mm" if no seconds
+        return DateFormat("hh:mm a").format(time); // e.g., 02:15 PM
+      } catch (e) {
+        return "--:-- AM";
+      }
+    }
     final miscController = MiscController();
     String month = "";
     String year = "";
@@ -164,7 +172,7 @@ class Homepage extends StatelessWidget {
                                                       children: [
                                                         RFText(
                                                           text: state.dashboard.checkIn != null
-                                                              ? state.dashboard.checkIn?.toString().substring(0, 5)
+                                                              ? formatTimeTo12Hour(state.dashboard.checkIn!)
                                                               : "--:-- AM",
                                                         ),
                                                         Container(
@@ -274,7 +282,7 @@ class Homepage extends StatelessWidget {
                                                       children: [
                                                         RFText(
                                                           text: state.dashboard.checkOut != null
-                                                              ? state.dashboard.checkOut?.toString().substring(0, 5)
+                                                              ?formatTimeTo12Hour(state.dashboard.checkOut!)
                                                               : "--:-- PM",
                                                         ),
                                                         Container(

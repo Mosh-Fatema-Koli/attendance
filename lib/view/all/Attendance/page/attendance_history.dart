@@ -212,17 +212,19 @@ class HistoryPage extends StatelessWidget {
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
                       child: AttendanceCard(attendanceHistory: state.listOfData[index],),
-                    ),):Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 32.h),
-                      Image.asset('assets/images/empty.png', color: AppColors.primaryColor, fit: BoxFit.fitHeight, height: 80.h),
-                      SizedBox(height: 16.h),
-                      RFText(text: 'No data found!', weight: FontWeight.w500, size: 18.sp, color: Colors.black87.withOpacity(0.8)),
-                      SizedBox(height: 32.h),
-                    ],
-                  ),
+                    ),):Expanded(
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 32.h),
+                        Image.asset('assets/images/empty.png', color: AppColors.primaryColor, fit: BoxFit.fitHeight, height: 50.h),
+                        SizedBox(height: 16.h),
+                        RFText(text: 'No data found!', weight: FontWeight.w500, size: 18.sp, color: Colors.black87.withOpacity(0.8)),
+                        SizedBox(height: 32.h),
+                      ],
+                                        ),
+                    ),
                 ),
               ],
             );

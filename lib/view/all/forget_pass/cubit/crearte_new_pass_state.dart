@@ -1,7 +1,8 @@
-part of 'forge_pass_cubit.dart';
+part of 'crearte_new_pass_cubit.dart';
 
 @immutable
-sealed class ForgePassState {
+
+sealed class CrearteNewPassState {
   bool success=false;
   String message="";
   String email="";
@@ -11,11 +12,11 @@ sealed class ForgePassState {
   List<Object> get props => [success, message,email,];
 }
 
-final class ForgePassInitial extends ForgePassState {}
+final class CreateNewPassInitial extends CrearteNewPassState {}
 
 
-final class ForgePassLoadedState extends ForgePassState {
-  ForgePassLoadedState(
+final class CreateNewPassLoadedState extends CrearteNewPassState {
+  CreateNewPassLoadedState(
       {bool? success, String? message,String? email,}) {
     this.success = success ?? this.success;
     this.message = message ?? this.message;

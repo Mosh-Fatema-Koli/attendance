@@ -4,11 +4,12 @@ import 'package:attendance/api_service/colors.dart';
 import 'package:attendance/view/all/Home/cubit/dashbord/dashboard_cubit.dart';
 import 'package:attendance/view/all/nab_bar.dart';
 import 'package:attendance/view/widgets/framework/rf_text.dart';
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+
 import '../../../common_controller/MiscController.dart';
 import '../../widgets/framework/rf_button.dart';
 import 'cubit/check_in_cubit.dart';
@@ -31,7 +32,7 @@ class _CheckInState extends State<CheckIn> {
   void initState() {
     super.initState();
     _cubit = CheckInCubit();
-    _cubit.openCamera(true);
+    _cubit.pickImageFromCamera(); // Open camera initially
   }
 
   @override
@@ -43,14 +44,11 @@ class _CheckInState extends State<CheckIn> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-  providers: [
-    BlocProvider(
-      create: (context) => CheckInCubit(),
-    ),  BlocProvider(
-      create: (context) => DashboardCubit(),
-    ),
-  ],
-  child: BlocBuilder<CheckInCubit, CheckInState>(
+      providers: [
+        BlocProvider(create: (_) => _cubit),
+        BlocProvider(create: (_) => DashboardCubit()),
+      ],
+      child: BlocBuilder<CheckInCubit, CheckInState>(
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -66,78 +64,34 @@ class _CheckInState extends State<CheckIn> {
             ),
             body: Column(
               children: [
-                if (state is CheckInCameraOpened) ...[
-                  // ✅ Fix: Full-width camera preview
-                  Expanded(
-                    child: AspectRatio(
-                      aspectRatio: state.cameraController.value.aspectRatio,
-                      child: CameraPreview(state.cameraController),
-                    ),
-                  ),
-                  _buildCameraControls(context, state),
-                ] else if (state is CheckInLoaded) ...[
+                if (state is CheckInLoaded) ...[
                   Expanded(
                     child: Image.file(
                       File(state.cameraPath),
-                      fit: BoxFit.cover, // ✅ Fix: Full-screen image preview
+                      fit: BoxFit.cover,
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
                     ),
                   ),
                   _buildSendButton(context, state.cameraPath),
                 ] else if (state is CheckInError) ...[
-                  Center(child: Text('Error: ${state.errorMessage}')),
+                  Expanded(
+                    child: Center(child: Text('No image captured. Please return to the home screen.')),
+                  ),
                 ] else ...[
-                  const Center(child: CircularProgressIndicator()),
+                  const Expanded(
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
                 ],
               ],
             ),
           );
         },
       ),
-);
-  }
-
-  /// ✅ Camera Control Buttons (Toggle Camera, Capture Image, Flash)
-  Widget _buildCameraControls(BuildContext context, CheckInCameraOpened state) {
-    return Container(
-      color: AppColors.primaryColor,
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.read<CheckInCubit>().toggleCamera();
-                },
-                icon: Icon(Icons.cameraswitch_outlined, color: Colors.white),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<CheckInCubit>().captureImage(context);
-                },
-                icon: Icon(Icons.camera_alt, color: Colors.white),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<CheckInCubit>().toggleFlash();
-                },
-                icon: Icon(
-                  state.cameraController.value.flashMode == FlashMode.torch
-                      ? Icons.flash_on
-                      : Icons.flash_off,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 
-  /// ✅ Send Button (Check-In, Check-Out)
+  /// ✅ Send Button (Check-In, Check-Out) with Retake
   Widget _buildSendButton(BuildContext context, String imagePath) {
     return Container(
       color: AppColors.primaryColor,
@@ -157,10 +111,15 @@ class _CheckInState extends State<CheckIn> {
                     image: imagePath,
                     onComplete: (isSuccess, message) {
                       context.read<DashboardCubit>().loadData();
-                      _miscController.navigateTo(context: context, page: NavbarPage(initialIndex: 0));
-                      _miscController.toast(msg: message,position: ToastGravity.BOTTOM);
-
-                      },
+                      _miscController.navigateTo(
+                        context: context,
+                        page: NavbarPage(initialIndex: 0),
+                      );
+                      _miscController.toast(
+                        msg: message,
+                        position: ToastGravity.BOTTOM,
+                      );
+                    },
                   );
                 },
               ),
@@ -171,7 +130,7 @@ class _CheckInState extends State<CheckIn> {
                 borderWidth: 2,
                 text: "Retake",
                 onPressed: () {
-                  _cubit.openCamera(true);
+                  _cubit.pickImageFromCamera(); // Reopen camera
                 },
               ),
             ],

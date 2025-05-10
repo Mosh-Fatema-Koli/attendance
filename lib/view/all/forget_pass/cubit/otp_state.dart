@@ -1,7 +1,7 @@
-part of 'forge_pass_cubit.dart';
+part of 'otp_cubit.dart';
 
 @immutable
-sealed class ForgePassState {
+sealed class OtpState {
   bool success=false;
   String message="";
   String email="";
@@ -11,11 +11,11 @@ sealed class ForgePassState {
   List<Object> get props => [success, message,email,];
 }
 
-final class ForgePassInitial extends ForgePassState {}
+final class OtpInitial extends OtpState {}
 
 
-final class ForgePassLoadedState extends ForgePassState {
-  ForgePassLoadedState(
+final class OtpLoadedState extends OtpState {
+  OtpLoadedState(
       {bool? success, String? message,String? email,}) {
     this.success = success ?? this.success;
     this.message = message ?? this.message;

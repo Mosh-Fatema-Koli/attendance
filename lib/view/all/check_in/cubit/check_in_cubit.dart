@@ -5,6 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../../api_service/ApiController.dart';
@@ -23,94 +24,33 @@ class CheckInCubit extends Cubit<CheckInState> {
   int _selectedCameraIndex = 0;
   FlashMode flashMode = FlashMode.off; // Track flash state
 
-  // Future<void> openCamera([bool useFrontCamera = false]) async {
-  //   try {
-  //     cameras = await availableCameras();
-  //     _selectedCameraIndex = useFrontCamera
-  //         ? cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.front)
-  //         : cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.back);
-  //
-  //     if (_selectedCameraIndex == -1 || cameras.isEmpty) {
-  //       emit(CheckInError("No camera found! Available cameras: $cameras"));
-  //       return;
-  //     }
-  //
-  //     controller = CameraController(
-  //       cameras[_selectedCameraIndex],
-  //       ResolutionPreset.high,
-  //       enableAudio: false, // Disable audio for performance
-  //     );
-  //
-  //     await controller.initialize();
-  //     emit(CheckInCameraOpened(controller, useFrontCamera));
-  //   } catch (e) {
-  //     emit(CheckInError("Camera initialization failed: $e"));
-  //   }
-  // }
-  Future<void> openCamera([bool useFrontCamera = false]) async {
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> pickImageFromCamera() async {
     try {
-      cameras = await availableCameras();
+      emit(CheckInInitial()); // Reset any previous state
 
-      if (cameras.isEmpty) {
-        emit(CheckInError("No cameras found. Make sure you're using a real device and camera permission is granted."));
-        return;
-      }
-
-      _selectedCameraIndex = useFrontCamera
-          ? cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.front)
-          : cameras.indexWhere((camera) => camera.lensDirection == CameraLensDirection.back);
-
-      if (_selectedCameraIndex == -1) {
-        emit(CheckInError("No suitable camera found (front: $useFrontCamera)"));
-        return;
-      }
-
-      controller = CameraController(
-        cameras[_selectedCameraIndex],
-        ResolutionPreset.high,
-        enableAudio: false,
-      );
-
-      await controller.initialize();
-      emit(CheckInCameraOpened(controller, useFrontCamera));
-    } catch (e) {
-      emit(CheckInError("Camera initialization failed: $e"));
-    }
-  }
-
-  Future<void> toggleCamera() async {
-    _selectedCameraIndex = (_selectedCameraIndex + 1) % cameras.length;
-    await openCamera(cameras[_selectedCameraIndex].lensDirection == CameraLensDirection.front);
-  }
-
-  Future<void> toggleFlash() async {
-    try {
-      if (!controller.value.isInitialized) return;
-
-      flashMode = (flashMode == FlashMode.off) ? FlashMode.torch : FlashMode.off;
-      await controller.setFlashMode(flashMode);
-
-      emit(CheckInCameraOpened(controller, state.useFrontCamera));
-    } catch (e) {
-      emit(CheckInError("Flash toggle failed: ${e.toString()}"));
-    }
-  }
-
-  Future<void> captureImage(BuildContext context) async {
-    try {
-      if (!controller.value.isInitialized) return;
-      final XFile? image = await controller.takePicture();
+      final XFile? image = await _picker.pickImage(source: ImageSource.camera);
 
       if (image == null || image.path.isEmpty) {
-        emit(CheckInError("Image capture failed"));
+        emit(CheckInError("No image captured"));
         return;
       }
 
       emit(CheckInLoaded(cameraPath: image.path));
     } catch (e) {
-      emit(CheckInError("Capture error: $e"));
+      emit(CheckInError("Image capture failed: $e"));
     }
   }
+
+  Future<void> retakeImage() async {
+    await pickImageFromCamera();
+  }
+
+  void resetState() {
+    emit(CheckInInitial());
+  }
+
 
   Future<void> submitData({
     required BuildContext context,
@@ -155,7 +95,7 @@ class CheckInCubit extends Cubit<CheckInState> {
                 "image": multipartFile,
                 "attendance_type": attendance_type == 0 ? "entry" : "exit",
                // "mac_address": macAddress,
-                "mac_address": macAddress??"a8-6e-84-ca-d7-8c",
+                "mac_address": macAddress,
               });
 
               // ✅ Send API Request

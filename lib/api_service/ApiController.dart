@@ -29,6 +29,7 @@ class API {
 
     _dio.options.headers = headers;
     _dio.options.method = method;
+    print(address);
 
     try {
       return await _dio.request(address, data: jsonData);
@@ -202,7 +203,7 @@ class API {
       Response apiResponse = await apiCore(
         address: endpoint,
         method: 'POST',
-        token: token,
+        token: token??"",
         jsonData: data, // 🔥 data can be either Map<String, dynamic> or FormData
       );
 

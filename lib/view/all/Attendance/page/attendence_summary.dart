@@ -194,7 +194,7 @@ class AttendanceSummary extends StatelessWidget {
                                 'assets/images/empty.png',
                                 color: AppColors.primaryColor,
                                 fit: BoxFit.fitHeight,
-                                height: 80.h,
+                                height: 50.h,
                               ),
                               SizedBox(height: 16.h),
                               RFText(
